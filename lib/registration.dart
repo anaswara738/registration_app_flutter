@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app_flutter/login.dart';
+import 'package:registration_app_flutter/signup.dart';
 
 class Registrations extends StatelessWidget {
   const Registrations({super.key});
@@ -22,7 +24,12 @@ class Registrations extends StatelessWidget {
               height: 50,
               width: 300,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Signups()),
+                  );
+                },
                 child: Text("Sign up"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -40,7 +47,12 @@ class Registrations extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Logins()),
+                  );
+                },
                 child: Text("Login"),
               ),
             ),
