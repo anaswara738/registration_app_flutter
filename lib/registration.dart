@@ -1,44 +1,47 @@
 import 'package:flutter/material.dart';
 
-class registrations extends StatelessWidget {
-  const registrations({super.key});
+class Registrations extends StatelessWidget {
+  const Registrations({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 60),
+            SizedBox(height: 50),
             Text(
               "Welcome",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
+            SizedBox(height: 50),
             Image(image: AssetImage("assets/image.png")),
-            SizedBox(height: 40),
+            SizedBox(height: 50),
             SizedBox(
-              height: 40,
+              height: 50,
               width: 300,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 96, 125, 139),
-                  foregroundColor: const Color.fromARGB(221, 0, 0, 0),
-                ),
-                onPressed: () {},
-                child: Text("login"),
-              ),
-            ),
-            SizedBox(height: 40),
-            SizedBox(
-              height: 40,
-              width: 300,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 96, 125, 139),
-                  foregroundColor: const Color.fromARGB(221, 0, 0, 0),
-                ),
                 onPressed: () {},
                 child: Text("Sign up"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  side: BorderSide(color: Colors.black),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            SizedBox(
+              height: 50,
+              width: 300,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {},
+                child: Text("Login"),
               ),
             ),
           ],
