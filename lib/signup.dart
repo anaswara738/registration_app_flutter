@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:registration_app_flutter/login.dart';
+import 'package:registration_app_flutter/services.dart';
 
 class Signups extends StatefulWidget {
   const Signups({super.key});
@@ -9,15 +10,16 @@ class Signups extends StatefulWidget {
 }
 
 class _SignupsState extends State<Signups> {
-  @override TextEditingController emailcontroller = TextEditingController();
+  @override
+  TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController usernamecontroller = TextEditingController();
   TextEditingController confirmpasswordcontroller = TextEditingController();
-   final formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Form(
+      body: Form(key: formkey,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -39,13 +41,16 @@ class _SignupsState extends State<Signups> {
                 ),
                 SizedBox(height: 60),
                 Align(alignment: Alignment.topLeft, child: Text("UserName")),
-                TextFormField(controller: usernamecontroller, validator: (value) {
-                  if(value==null||value.isEmpty){
-                    return "username is required";}
-                    if(value.length!=8){ 
-                      return"username must be atleast 8 characters";
+                TextFormField(
+                  controller: usernamecontroller,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "username is required";
                     }
-                },
+                    if (value.length != 8) {
+                      return "username must be atleast 8 characters";
+                    }
+                  },
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
@@ -57,7 +62,8 @@ class _SignupsState extends State<Signups> {
                 ),
                 SizedBox(height: 40),
                 Align(alignment: Alignment.topLeft, child: Text("Email")),
-                TextFormField(controller: emailcontroller,
+                TextFormField(
+                  controller: emailcontroller,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "email is required";
@@ -77,13 +83,13 @@ class _SignupsState extends State<Signups> {
                 ),
                 SizedBox(height: 40),
                 Align(alignment: Alignment.topLeft, child: Text("Password")),
-                TextFormField(controller: passwordcontroller,
+                TextFormField(
+                  controller: passwordcontroller,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "password is required"; 
-                     }  if(value!=8){
-                      return"password must be of 8 characters";
-                     }
+                      return "password is required";
+                    }
+                    
                   },
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
@@ -99,17 +105,19 @@ class _SignupsState extends State<Signups> {
                   alignment: Alignment.topLeft,
                   child: Text("Confirm Password"),
                 ),
-                TextFormField(controller:confirmpasswordcontroller ,validator: (value) {
-                  if(value==null||value.isEmpty);{ 
-                    return "confirm your password";
-                  }
-                  if(value!=passwordcontroller.text){
-                    return "Password is not the same";
-                  }
-                  if(value!=8){
-                    return "Password must be of 8 characters";
-                  }
-             },
+                TextFormField(
+                  controller: confirmpasswordcontroller,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) 
+                    {
+                      return "confirm your password";
+                    }
+
+                   if (value != passwordcontroller.text) {
+                      return "Password is not the same";
+                    }
+                    
+                  },
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
@@ -129,12 +137,22 @@ class _SignupsState extends State<Signups> {
                       foregroundColor: Colors.white,
                       side: BorderSide(color: Colors.black),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        register(
+                          username: usernamecontroller.text,
+                          email: emailcontroller.text,
+                          password: passwordcontroller.text,
+                          confirmpassword: confirmpasswordcontroller.text,
+                          context: context,
+                        );
+                      }
+                    },
                     child: Text("Sign Up"),
                   ),
                 ),
                 SizedBox(height: 10),
-        
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

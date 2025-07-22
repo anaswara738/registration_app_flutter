@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:registration_app_flutter/forgotpassword.dart';
+import 'package:registration_app_flutter/services.dart';
 import 'package:registration_app_flutter/signup.dart';
 
 class Logins extends StatefulWidget {
@@ -69,6 +71,7 @@ class _LoginsState extends State<Logins> {
                       return "password is required";
                     }
                   },
+
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
@@ -78,6 +81,23 @@ class _LoginsState extends State<Logins> {
                     ),
                   ),
                 ),
+                TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Forgot()),
+                        );
+                      },
+                      child: Align(alignment: Alignment.bottomRight,
+                        child: Text(
+                          " Forgot password",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                 SizedBox(height: 40),
                 SizedBox(
                   height: 50,
@@ -88,7 +108,7 @@ class _LoginsState extends State<Logins> {
                       foregroundColor: Colors.white,
                       side: BorderSide(color: Colors.black),
                     ),
-                    onPressed: () {},
+                    onPressed: () {if(formkey.currentState!.validate()){loginn(email: emailcontroller.text, password: passwordcontroller.text, context: context);}},
                     child: Text("Login"),
                   ),
                 ),
