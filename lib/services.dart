@@ -22,14 +22,40 @@ Future<void> register({
     ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }
-Future<void> loginn({required String email,required String password,required BuildContext context,})
-async{try{await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
 
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("login successfull")));
-} catch (e) {
- ScaffoldMessenger.of(
+Future<void> loginn({
+  required String email,
+  required String password,
+  required BuildContext context,
+}) async {
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("login successfull")));
+  } catch (e) {
+    ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text(e.toString())));
   }
 }
 
+Future<void> forgotpass({
+  required String Email,
+  required BuildContext context,
+}) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: Email);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("password reset link sent")));
+  } catch (e) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(e.toString())));
+  }
+}
